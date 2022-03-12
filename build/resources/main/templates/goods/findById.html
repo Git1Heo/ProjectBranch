@@ -71,7 +71,7 @@
             </div>
             <!-- 좋아요 모아보기 -->
             <div class="header_like">
-                <a th:href="@{|/goods/pick/${memberId}|}"> <img class="header_like_img" src="/image/like.png"/> </a>
+                <a th:href="@{|/goods/pick/${memberId}|}"> <img class="header_like_img" src="/image/star.png"/> </a>
             </div>
             <!-- 사용자 정보 -->
             <div class="header_user" id="userToggleButton">
@@ -98,6 +98,41 @@
             <div class="modal-footer border_none modal_btn_box">
                 <button type="button" class="btn btn-secondary flex-grow-1 bg_ccc logout_modal_btn logout_modal_btn_cancel" data-bs-dismiss="modal">취소</button>
                 <button type="button" class="btn btn-primary flex-grow-1 bg_524A4E logout_modal_btn logout_modal_btn_okay" onclick="modalLogout()">로그아웃</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 삭제모달 -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p_30 bg_ef">
+            <div class="modal-body fs_16 text_center fw_b">
+                정말로 게시글을 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer border_none modal_btn_box">
+                <button type="button" class="btn btn-secondary flex-grow-1 bg_ccc logout_modal_btn logout_modal_btn_cancel" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary flex-grow-1 bg_524A4E logout_modal_btn logout_modal_btn_okay" th:onclick="goodsDelete([[${goods.goodsId}]])">삭제하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:if="${session.LoginRole.equals('ROLE_ADMIN')}">
+    <div class="up_btn" data-bs-toggle="modal" data-bs-target="#adminDeleteModal">
+        <img class="update_btn_img" src="/image/red-x.svg">
+    </div>
+</div>
+
+<div class="modal fade" id="adminDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p_30 bg_ef">
+            <div class="modal-body fs_16 text_center fw_b">
+                정말로 게시글을 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer border_none modal_btn_box">
+                <button type="button" class="btn btn-secondary flex-grow-1 bg_ccc logout_modal_btn logout_modal_btn_cancel" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary flex-grow-1 bg_524A4E logout_modal_btn logout_modal_btn_okay" th:onclick="adminGoodsDelete([[${goods.goodsId}]])">삭제하기</button>
             </div>
         </div>
     </div>
@@ -189,7 +224,6 @@
                             <td th:text="${goodsComment.goodsCommentContents}"> 내용 </td>
                             <td th:text="${#temporals.format(goodsComment.getCreateTime(), 'MM-dd HH:mm')}"> 작성시간 </td>
                             <td style="width: 20px" th:if="${session.LoginNumber.equals(goodsComment.memberId)}">
-<!--                                <div th:if="${session.LoginNumber.equals(goodsComment.memberId)}">-->
                                 <button class="comment_delete_btn" th:onclick="goodsCommentDelete([[${goodsComment.goodsCommentId}]])">X</button>
 <!--                                </div>-->
                         </tr>
@@ -227,7 +261,7 @@
                     <button class="long_btn_3 signup_btn fs_16 fw_b" th:if="${goods.goodsStock<=0}"> 품절 </button>
                 </div>
                 <div class="flex-grow-1 mg_lr_5">
-                    <img class="goods_like_btn" id="goodsLike" src="/image/like_default.png">
+                    <img class="goods_like_btn" id="goodsLike" src="/image/star_default.png">
                     <input type="hidden" id="like_check" th:value="${like}">
                 </div>
             </div>
@@ -311,9 +345,9 @@
         const likeImg = document.getElementById("goodsLike")
 
         if (likeVal > 0) {
-            likeImg.src = "/image/like.png";
+            likeImg.src = "/image/star.png";
         } else {
-            likeImg.src = "/image/like_default.png";
+            likeImg.src = "/image/star_default.png";
         }
         // 좋아요 버튼을 클릭 시 실행되는 코드
         likeImg.addEventListener("click", function () {
@@ -323,12 +357,12 @@
                 data: {'goodsId': goodsId, 'memberId': memberId},
                 success: function (data) {
                     if (data == 1) {
-                        $("#likeImg").attr("src", "/image/like.png");
+                        $("#likeImg").attr("src", "/image/star.png");
                         // location.href="/board/"+boardId;
                         location.reload()
 
                     } else {
-                        $("#likeImg").attr("src", "/image/like_default.png");
+                        $("#likeImg").attr("src", "/image/star_default.png");
                         // location.href="/board/"+boardId;
                         location.reload()
                     }
