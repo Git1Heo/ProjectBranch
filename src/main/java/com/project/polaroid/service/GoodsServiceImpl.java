@@ -1,5 +1,5 @@
 package com.project.polaroid.service;
-//         String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
+
 
 import com.project.polaroid.page.PagingConstGoods;
 import com.project.polaroid.dto.*;
@@ -93,9 +93,10 @@ public class GoodsServiceImpl implements GoodsService {
     public void saveFile(Long goodsId, MultipartFile goodsFile) throws IOException {
         String goodsFilename = goodsFile.getOriginalFilename();
         goodsFilename = System.currentTimeMillis() + "-" + goodsFilename;
-        //String savePath = "C:\\Development\\source\\springboot\\Polaroid\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
+        // 윤성경로
+        String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
+        // 성욱경로
 //        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
-        String savePath = "/Users/sky/Polaroid/polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
 
         if (!goodsFile.isEmpty()) {
             goodsFile.transferTo(new File(savePath));
