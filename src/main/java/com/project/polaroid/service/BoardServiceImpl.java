@@ -47,8 +47,8 @@ public class BoardServiceImpl implements BoardService {
     public void saveFile(Long boardId, MultipartFile boardFile) throws IOException {
         String boardFilename = boardFile.getOriginalFilename();
         boardFilename = System.currentTimeMillis() + "-" + boardFilename;
-        //String savePath = "/Users/sky/EclipseJava/source/SpringBoot/Polaroid/src/main/resources/static/upload/" + boardFilename;
-        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/upload/" + boardFilename;
+        String savePath = "/Users/sky/Polaroid/polaroid/src/main/resources/static/upload/" + boardFilename;
+//        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/upload/" + boardFilename;
 
         if (!boardFile.isEmpty()) {
             boardFile.transferTo(new File(savePath));
