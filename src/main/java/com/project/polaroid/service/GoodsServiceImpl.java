@@ -94,9 +94,10 @@ public class GoodsServiceImpl implements GoodsService {
         String goodsFilename = goodsFile.getOriginalFilename();
         goodsFilename = System.currentTimeMillis() + "-" + goodsFilename;
         // 윤성경로
-        String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
+//        String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
         // 성욱경로
 //        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
+        String savePath = "/Users/sky/Polaroid/ProjectBranch-ojs/src/main/resources/static/goodsFile/" + goodsFilename;
 
         if (!goodsFile.isEmpty()) {
             goodsFile.transferTo(new File(savePath));
