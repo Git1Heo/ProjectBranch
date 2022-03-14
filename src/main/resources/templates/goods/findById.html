@@ -26,25 +26,7 @@
     </script>
 
 </head>
-<!--<style>-->
-<!--    .img-wrapper {-->
-<!--        /*width: 100%;*/-->
-<!--        /*height: 400px;*/-->
-<!--        /*overflow: hidden;*/-->
-<!--        width: 600px;-->
-<!--        height:600px;-->
-<!--        margin: 0 auto;-->
-<!--        overflow:hidden;-->
-<!--        position:relative;-->
 
-<!--    }-->
-<!--    .imgFile {-->
-<!--        width: 100%;-->
-<!--        height: 100%;-->
-<!--        object-fit:cover;-->
-<!--        /*object-fit: contain;*/-->
-<!--    }-->
-<!--</style>-->
 <body>
 
 <div class="header">
@@ -78,7 +60,8 @@
                 <img class="header_user_img" src="/image/user_default.png"/>
             </div>
             <div class="header_user_toggle_box" id="userToggleMenu">
-                <input class="header_user_toggle_btn fs_14" type="button" value="마이페이지" onclick="location.href='/my_page'"/>
+                <input class="header_user_toggle_btn fs_14" type="button" value="마이페이지" onclick="location.href='/member/mypage'"/>
+                <input class="header_user_toggle_btn fs_14" type="button" value="SNS로가기" onclick="location.href='/board/'"/>
                 <input class="header_user_toggle_btn fs_14" type="button" value="결제리스트" onclick="location.href='/goods/payList'"/>
                 <input class="header_user_toggle_btn fs_14" type="button" value="굿즈페이지" th:if="${member.memberRole == 'ROLE_SELLER'}" th:onclick="'location.href=\''+ @{|/goods/list/${memberId}|} + '\''"/>
                 <button type="button" class="header_user_toggle_btn fs_14" id="show" data-bs-toggle="modal" data-bs-target="#exampleModal">로그아웃</button>
@@ -119,8 +102,8 @@
 </div>
 
 <div th:if="${session.LoginRole.equals('ROLE_ADMIN')}">
-    <div class="up_btn" data-bs-toggle="modal" data-bs-target="#adminDeleteModal">
-        <img class="update_btn_img" src="/image/red-x.svg">
+    <div class="admin_delete_btn" data-bs-toggle="modal" data-bs-target="#adminDeleteModal">
+        <img class="admin_delete_btn_img" src="/image/red-x.svg">
     </div>
 </div>
 
@@ -146,11 +129,7 @@
             <p class="fs_24 fw_b">상품 내용</p>
             <div class="title_bottom_line2"></div>
         </div>
-<!--        <div class="text_right mb_20">-->
-<!--            <input class="shop_my_detail_top_btn" type="button" value="뒤로가기" onclick="location.href='/goods/'"/>-->
-<!--            <input class="shop_my_detail_top_btn" type="button" th:if="${session.LoginNumber.equals(goods.memberId)}" th:onclick="goodsDelete([[${goodsId}]])" value="삭제"/>-->
-<!--            <input class="shop_my_detail_top_btn" type="button" th:if="${session.LoginNumber.equals(goods.memberId)}" th:onclick="goodsUpdate([[${goodsId}]])" value="수정하기"/>-->
-<!--        </div>-->
+
         <div>
             <div class="text_center">
                 <div class="shop_my_detail_img_box mb_5" th:each="goodsFile: ${goods.getGoodsPhoto()}">
@@ -287,39 +266,6 @@
             <img class="up_btn_img" src="/image/up_btn.png" />
         </div>
 
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content p_30 bg_ef">
-                    <div class="modal-body fs_16 text_center fw_b">
-                        정말로 게시글을 삭제하시겠습니까?
-                    </div>
-                    <div class="modal-footer border_none modal_btn_box">
-                        <button type="button" class="btn btn-secondary flex-grow-1 bg_ccc logout_modal_btn logout_modal_btn_cancel" data-bs-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary flex-grow-1 bg_524A4E logout_modal_btn logout_modal_btn_okay" th:onclick="goodsDelete([[${goods.goodsId}]])">삭제하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div th:if="${session.LoginRole.equals('ROLE_ADMIN')}">
-            <div class="up_btn" data-bs-toggle="modal" data-bs-target="#adminDeleteModal">
-                <img class="update_btn_img" src="/image/red-x.svg">
-            </div>
-        </div>
-
-        <div class="modal fade" id="adminDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content p_30 bg_ef">
-                    <div class="modal-body fs_16 text_center fw_b">
-                        정말로 게시글을 삭제하시겠습니까?
-                    </div>
-                    <div class="modal-footer border_none modal_btn_box">
-                        <button type="button" class="btn btn-secondary flex-grow-1 bg_ccc logout_modal_btn logout_modal_btn_cancel" data-bs-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary flex-grow-1 bg_524A4E logout_modal_btn logout_modal_btn_okay" th:onclick="adminGoodsDelete([[${goods.goodsId}]])">삭제하기</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 <!--        <div th:if="${session.LoginRole.equals('ROLE_ADMIN')}">-->
 <!--            <div class="admin_delete_btn" data-bs-toggle="modal" data-bs-target="#deleteModal">-->

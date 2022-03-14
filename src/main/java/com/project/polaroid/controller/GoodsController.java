@@ -36,9 +36,7 @@ public class GoodsController {
     // 굿즈보드 페이징
     @GetMapping
     public String paging(@PageableDefault(page = 1) Pageable pageable,Model model,HttpSession session) {
-//        @AuthenticationPrincipal PrincipalDetails principalDetails
-//        model.addAttribute("member", principalDetails.getMember().getId());
-        // Page 객체 // 서비스로 넘기는건 pageable 객체를 넘긴다
+
         Page<GoodsPagingDTO> goodsList = gs.paging(pageable);
         model.addAttribute("goodsList", goodsList);
         Long memberId = (Long) session.getAttribute("LoginNumber");
@@ -112,22 +110,10 @@ public class GoodsController {
         return "goods/save";
     }
 
-//    // 굿즈보드 작성
-//    @PostMapping("save")
-//    public String save(@ModelAttribute GoodsSaveDTO goodsSaveDTO, @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-//        Long goodsId = gs.save(goodsSaveDTO, principalDetails.getMember().getId());
-//        for (MultipartFile g: goodsSaveDTO.getGoodsFile()) {
-//            gs.saveFile(goodsId, g);
-//            }
-//        return "redirect:/goods/";
-//    }
-
     // 굿즈보드 작성
     @PostMapping("save")
-    public String save(@ModelAttribute GoodsSaveDTO goodsSaveDTO, HttpSession session, Model model) throws IOException {
+    public String save(@ModelAttribute GoodsSaveDTO goodsSaveDTO) throws IOException {
         Long goodsId = gs.save(goodsSaveDTO);
-        Long memberId = (Long) session.getAttribute("LoginNumber");
-        model.addAttribute("member",ms.findById(memberId));
         for (MultipartFile g: goodsSaveDTO.getGoodsFile()) {
             gs.saveFile(goodsId, g);
         }

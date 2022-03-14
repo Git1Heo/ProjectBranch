@@ -653,3 +653,13 @@ textarea[readonly]{
     top: -35px;
     left: 17px;
 }
+
+
+/* 고윤성 3월14일 추가*/
+.card_bottom_line {
+    height: 1px;
+    width: auto;
+    text-align: center;
+    background-color: #dddddd;
+    margin-top: 2px;
+}

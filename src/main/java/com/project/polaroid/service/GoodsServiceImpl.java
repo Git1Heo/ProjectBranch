@@ -72,14 +72,6 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsDetailDTO;
     }
 
-//    // 글쓰기 기능
-//    @Override
-//    public Long save(GoodsSaveDTO goodsSaveDTO, Long memberId) {
-//        GoodsEntity goodsEntity = GoodsEntity.toGoodsEntitySave(goodsSaveDTO, ms.findById(memberId));
-//        Long goodsId = gr.save(goodsEntity).getId();
-//        return goodsId;
-//    }
-
     // 글쓰기 기능
     @Override
     public Long save(GoodsSaveDTO goodsSaveDTO) {
@@ -93,8 +85,8 @@ public class GoodsServiceImpl implements GoodsService {
     public void saveFile(Long goodsId, MultipartFile goodsFile) throws IOException {
         String goodsFilename = goodsFile.getOriginalFilename();
         goodsFilename = System.currentTimeMillis() + "-" + goodsFilename;
-        // 윤성경로
-        String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
+        // 윤성경로 경로찾아서 보내는 방식
+        String savePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
         // 성욱경로
 //        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
 
