@@ -117,7 +117,7 @@
             <div class="title_bottom_line2"></div>
         </div>
 
-<a href="/goods/save" th:if="${member.memberRole == 'ROLE_SELLER'}"> 글쓰기 </a>
+<!--<a href="/goods/save" th:if="${member.memberRole == 'ROLE_SELLER'}"> 글쓰기 </a>-->
 <!--<a th:href="@{|/goods/list/${memberId}|}"> 리스트 </a>-->
 <!--<a th:href="@{|/goods/pick/${memberId}|}"> 찜목록 </a>-->
 
@@ -149,7 +149,7 @@
                     <div class="img-wrapper" th:if="${goods.goodsStock>0}">
                         <img class="rounded mx-auto d-block mt-3 btn imgFile" alt="" th:src="@{|/goodsFile/${goods.getPhotoList().get(0).getGoodsFilename()}|}">
                     </div>
-                    <div class="card_bottom_line"></div>
+                    <div class="card_bottom_line mt-3"></div>
                     <div class="card_bottom_line"></div>
                 </a>
                 <div class="card-body">
