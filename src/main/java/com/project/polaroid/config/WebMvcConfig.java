@@ -2,6 +2,7 @@ package com.project.polaroid.config;
 
 import org.springframework.boot.web.servlet.view.MustacheViewResolver;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,5 +20,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.viewResolver(resolver);
     }
+
+//    @Override
+//    public void addResourceHandler(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/upload/**").addResourceLocations("/Users/sky/opt/"); // 정적자원이 참조하는링크 ex)
+//    }
 
 }

@@ -28,11 +28,6 @@ public class AdminController {
     public final BoardRepository br;
     public final GoodsRepository gr;
 
-    @GetMapping("admin/adminPage")
-    public String adminPage(){
-        return "admin/adminPage";
-    }
-
     @GetMapping("admin/giveRole/{memberId}")
     public String giveRole(@PathVariable Long memberId){
         sellerRoleService.giveRole(memberId);

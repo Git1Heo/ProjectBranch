@@ -29,9 +29,24 @@ spring:
           timeout: 5000
           writetimeout: 5000
 
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  thyleaf:
+    cache: false
+
+  servlet:
+    multipart:
+      max-file-size:
+        50MB
+      max-request-size:
+        50MB
+
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
