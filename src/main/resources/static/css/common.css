@@ -343,6 +343,12 @@ textarea[readonly]{
     margin: 0px 5px;
     flex-grow: 0.1;
 }
+.input_text_9 {
+    height: 100%;
+    border-radius: 4px;
+    margin: 0px 5px;
+    flex-grow: 0.5;
+}
 .input_btn_box {
     width: 140px;
     display: inline-block;
@@ -652,4 +658,9 @@ textarea[readonly]{
     position: relative;
     top: -35px;
     left: 17px;
+}
+
+.max_box_update{
+    max-width: 800px;
+    margin: 0 auto;
 }

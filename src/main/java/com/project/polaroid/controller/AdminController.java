@@ -36,7 +36,7 @@ public class AdminController {
     @GetMapping("admin/giveRole/{memberId}")
     public String giveRole(@PathVariable Long memberId){
         sellerRoleService.giveRole(memberId);
-        return "redirect:/admin/adminPage";
+        return "redirect:/admin/sellerList";
     }
 
     @GetMapping("admin/memberList")
