@@ -343,6 +343,12 @@ textarea[readonly]{
     margin: 0px 5px;
     flex-grow: 0.1;
 }
+.input_text_9 {
+    height: 100%;
+    border-radius: 4px;
+    margin: 0px 5px;
+    flex-grow: 0.5;
+}
 .input_btn_box {
     width: 140px;
     display: inline-block;
@@ -622,10 +628,10 @@ textarea[readonly]{
 }
 
 /* 3월 11일 추가*/
- .icon-badge-group .icon-badge-container {
-     display: inline-block;
-     margin-left: 15px;
- }
+.icon-badge-group .icon-badge-container {
+    display: inline-block;
+    margin-left: 15px;
+}
 
 .icon-badge-group .icon-badge-container:first-child {
     margin-left: 0
@@ -652,14 +658,4 @@ textarea[readonly]{
     position: relative;
     top: -35px;
     left: 17px;
-}
-
-
-/* 고윤성 3월14일 추가*/
-.card_bottom_line {
-    height: 1px;
-    width: auto;
-    text-align: center;
-    background-color: #dddddd;
-    margin-top: 2px;
 }

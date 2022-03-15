@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link href="/css/reset.css" rel="stylesheet" type="text/css">
@@ -46,10 +46,21 @@
                     <!--                    <input class="index_btn index_signup_btn fs_16" type="button" value="board_detail" onclick="location.href='/board_detail'" />-->
                 </div>
 
-                <div>
-                    <input class="index_btn index_signup_btn fs_16" type="button" value="admin" onclick="location.href='/admin/adminPage'" />
-                    <!--                    <input class="index_btn index_signup_btn fs_16" type="button" value="board_detail" onclick="location.href='/board_detail'" />-->
+                <div th:if="${session.LoginRole.equals('ROLE_ADMIN')}">
+                    <div class="index_text_box">
+                        <div>
+                            <input class="index_btn index_signup_btn fs_16" type="button" value="회원 관리" onclick="location.href='/admin/memberList'" />
+                            <input class="index_btn index_signup_btn fs_16" type="button" value="게시글 관리" onclick="location.href='/admin/boardList'" />
+                            <input class="index_btn index_signup_btn fs_16" type="button" value="판매글 관리" onclick="location.href='/admin/goodsList'" />
+                            <input class="index_btn index_signup_btn fs_16" type="button" value="판매권한 관리" onclick="location.href='/admin/sellerList'" />
+                            <!--                    <input class="index_btn index_signup_btn fs_16" type="button" value="board_detail" onclick="location.href='/board_detail'" />-->
+                        </div>
+                    </div>
                 </div>
+<!--                <a class="btn btn-outline-dark" href="/admin/memberList">회원관리</a>-->
+<!--                <a class="btn btn-outline-dark" href="/admin/boardList">게시글관리</a>-->
+<!--                <a class="btn btn-outline-dark" href="/admin/goodsList">판매글관리</a>-->
+<!--                <a class="btn btn-outline-dark" href="/admin/sellerList">판매권한 관리</a>-->
 
             </div>
         </div>
