@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.*;
 
 @Service
@@ -94,9 +93,9 @@ public class GoodsServiceImpl implements GoodsService {
         String goodsFilename = goodsFile.getOriginalFilename();
         goodsFilename = System.currentTimeMillis() + "-" + goodsFilename;
         // 윤성경로
-        String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
-        // 성욱경로
-//        String savePath = "/Users/seongwookheo/source/springboot/Polaroid/src/main/resources/static/goodsFile/" + goodsFilename;
+        //String savePath = "C:\\Development\\source\\springboot\\Polariod_Integrated\\src\\main\\resources\\static\\goodsFile\\" + goodsFilename;
+        String savePath = System.getProperty("user.dir") + "/src/main/resources/static/goodsFile/" + goodsFilename;;
+
 
         if (!goodsFile.isEmpty()) {
             goodsFile.transferTo(new File(savePath));
@@ -260,6 +259,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     // 굿즈 내글 리스트
+
     @Override
     @Transactional
     public Page<GoodsPagingDTO> list(Long memberId, Pageable pageable) {
@@ -286,7 +286,20 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsList;
     }
 
+    // 3.13 hsw 추가 좋아요 게시글
+    @Override
+    public List<GoodsDetailDTO> pickList(Long id) {
+        List<GoodsLikeEntity> pickList= glr.pickList(id);
+        List<GoodsEntity> goodsList=new ArrayList<>();
 
+        for(GoodsLikeEntity g: pickList){
+            goodsList.add(g.getGoodsEntity());
+        }
+
+        List<GoodsDetailDTO> pickGoodsList=GoodsDetailDTO.toChangeDTOList(goodsList);
+
+        return pickGoodsList;
+    }
 
 }
 

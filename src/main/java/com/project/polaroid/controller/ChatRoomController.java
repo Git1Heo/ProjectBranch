@@ -11,11 +11,13 @@ import com.project.polaroid.service.ChatRoomJoinService;
 import com.project.polaroid.service.ChatRoomService;
 import com.project.polaroid.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,7 @@ public class ChatRoomController {
     private final ChatRoomJoinService chatRoomJoinService;
     private final ChatRoomService chatRoomService;
     private final ChatMessageService chatMessageService;
+    private final MemberController memberController;
 
     // 닉네임 체크
     @GetMapping("/users/nameChk/{name}")
@@ -39,8 +42,13 @@ public class ChatRoomController {
     }
 
     // 채팅방 목록
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" )
     @GetMapping("/chat")
     public String chatHome(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
+        // 헤더
+        memberController.notice(principalDetails.getMember().getId());
+        model.addAttribute("member",memberService.findById(principalDetails.getMember().getId()));
+
         model.addAttribute("nickname",principalDetails.getMember().getMemberNickname());
 
         // 채팅방 목록
@@ -53,6 +61,7 @@ public class ChatRoomController {
     }
 
     // 채팅방 생성
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" )
     @PostMapping("/chat/newChat")
     public String newChat(@RequestParam("receiver") String user1, @RequestParam("sender") String user2){
         Long chatRoomId = chatRoomJoinService.newRoom(user1,user2);
@@ -60,6 +69,7 @@ public class ChatRoomController {
     }
 
     // 채팅방 입장
+    @PreAuthorize("hasRole('ROLE_MEMBER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" )
     @RequestMapping("/personalChat/{chatRoomId}")
     public String goChat(@PathVariable("chatRoomId") Long chatRoomId,Model model
             ,@AuthenticationPrincipal PrincipalDetails principalDetails){

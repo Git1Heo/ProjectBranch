@@ -17,7 +17,7 @@
 <body>
 
 <div class="box">
-    <div class="max_box">
+    <div class="max_box_update">
         <div class="mt_40 mb_40">
             <form action="/join" method="post" id="joinForm">
 
@@ -72,9 +72,9 @@
                     <option value="070">070</option>
                     <option value="">직접입력</option>
                 </select>
-                <input type="text" class="input_text_3 fs_16" id="backPhone" name="memberPhone" placeholder="'-' 없이 숫자만으로 핸드폰 번호를 입력하세요" onblur="pnCheck()">
+                <input type="text" class="input_text_3 fs_16" id="backPhone" name="backPhone" placeholder="'-' 없이 숫자만으로 핸드폰 번호를 입력하세요" onblur="pnCheck()">
             </div>
-            <input type="hidden" id="memberPhone">
+            <input type="hidden" id="memberPhone" name="memberPhone">
             <p class="check_result" id="pnOut"></p>
 
             <div class="input_box">
